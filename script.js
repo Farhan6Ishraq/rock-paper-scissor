@@ -1,36 +1,37 @@
 let getRoundChoice = () => {
-    return prompt('Pick Round 1 or Round 5');
-}
-
-//let roundSelection = getRoundChoice();
+  return prompt("Pick Round 1 or Round 5");
+};
 
 let getComputerChoice = () => {
-  const options = ['rock', 'paper', 'scissor'];
+  const options = ["rock", "paper", "scissor"];
 
-  return options[Math.floor(Math.random() * (3 - 0)) + 0]
+  return options[Math.floor(Math.random() * (3 - 0)) + 0];
 };
-
-//let computerSelection = getComputerChoice();
 
 let getPlayerChoice = () => {
-    return prompt('Pick Rock, Paper or Scissors');
+  let playerChoice = prompt("Pick Rock, Paper or Scissor").toLowerCase();
+
+  if (
+    playerChoice === "rock" ||
+    playerChoice === "paper" ||
+    playerChoice === "scissor"
+  ) {
+    return playerChoice;
+  } else {
+    getPlayerChoice();
+  }
 };
 
-//let playerSelection = getPlayerChoice();
-
-
-
-
-
-
-
+let oneRound = (playerSelection, computerSelection) => {};
 
 let completeGame = () => {
-    let roundSelection = getRoundChoice();
+  let roundSelection = getRoundChoice();
+  let playerSelection = getPlayerChoice();
+  let computerSelection = getComputerChoice();
 
-    if(roundSelection == 1) {
-        console.log('true');
-    }
-}
+  if (roundSelection == 1) {
+    oneRound(playerSelection, computerSelection);
+  }
+};
 
-completeGame();
+//completeGame();
