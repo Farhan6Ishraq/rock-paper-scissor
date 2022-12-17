@@ -1,6 +1,13 @@
 //Asks how many rounds the player wants to play
 let getRoundChoice = () => {
-  return prompt("Pick Round 1 or Round 5");
+  let roundSelection = prompt("Pick Round 1 or Round 5");
+  
+  if(roundSelection == 1 ||
+    roundSelection == 5) {
+      return roundSelection;
+  } else {
+      getRoundChoice();
+  }
 };
 
 //Returns a randomized move by the computer
@@ -32,39 +39,39 @@ function gameAlgo(playerSelection, computerSelection) {
     let computerValue = 0;
 
     if(playerSelection === 'rock' && computerSelection == 'rock') {
-        console.log('Its a Draw');
+        console.log('Computer picked Rock. It\'s a draw');
         playerValue += 0;
         computerValue += 0;
     } else if(playerSelection === 'rock' && computerSelection == 'paper') {
-      console.log('Computer has Won');
+      console.log('Computer picked Paper. You lose.');
       playerValue -= 1;
       computerValue += 1;
     } else if(playerSelection === 'rock' && computerSelection == 'scissor') {
-      console.log('Player has Won');
+      console.log('Computer picked Scissor. You won.');
       playerValue += 1;
       computerValue -= 1;
     } else if(playerSelection === 'paper' && computerSelection == 'rock') {
-      console.log('Player has Won');
+      console.log('Computer picked Rock. You won.');
       playerValue += 1;
       computerValue -= 1;
     } else if(playerSelection === 'paper' && computerSelection == 'paper') {
-      console.log('Its a Draw');
+      console.log('Computer picked paper. It\s a draw.');
       playerValue += 0;
       computerValue += 0;
     } else if(playerSelection === 'paper' && computerSelection == 'scissor') {
-      console.log('Computer has Won');
+      console.log('Comouter picked Scissor. You lose.');
       playerValue -= 1;
       computerValue += 1;
     } else if(playerSelection === 'scissor' && computerSelection == 'rock') {
-      console.log('Computer has Won');
+      console.log('Computer picked Rock. You lose.');
       playerValue -= 1;
       computerValue += 1;
     } else if(playerSelection === 'scissor' && computerSelection == 'paper') {
-      console.log('Player has Won');
+      console.log('Computer picked Paper. You Win.');
       playerValue += 1;
       computerValue -= 1;
     } else if(playerSelection === 'scissor' && computerSelection == 'scissor') {
-      console.log('Its a Draw');
+      console.log('Computer picked Scissor. It\s a draw.');
       playerValue += 0;
       computerValue += 0;
     }
@@ -81,23 +88,38 @@ function gameAlgo(playerSelection, computerSelection) {
 //Compilation of all the functions in a chronological order
 let completeGame = () => {
   let roundSelection = getRoundChoice();
-  let playerSelection = getPlayerChoice();
-  let computerSelection = getComputerChoice();
+  let playerSelection;
+  let computerSelection;
 
   let playerValue = 0;
   let computerValue = 0;
 
+  //Runs if the player wishes to play for one round
   if (roundSelection == 1) {
+    playerSelection = getPlayerChoice();
+    computerSelection = getComputerChoice();
     playerValue += gameAlgo(playerSelection, computerSelection).playerValue;
     computerValue += gameAlgo(playerSelection, computerSelection).computerValue;
 
-    console.log(computerValue);
     console.log(playerValue);
+    console.log(computerValue);
+
+  //Runs if the player wishes to play for five rounds
   } else if (roundSelection == 5) {
-    
+    for(let i = 1; i <= 5; i++) {
+      playerSelection = getPlayerChoice();
+      computerSelection = getComputerChoice();
+      playerValue += gameAlgo(playerSelection, computerSelection).playerValue;
+      computerValue += gameAlgo(playerSelection, computerSelection).computerValue;
+
+      console.log(playerValue);
+      console.log(computerValue);
+    }
   } else {
     completeGame();
   }
+
+  console.log(playerValue, computerValue);
 };
 
-// completeGame();
+completeGame();
