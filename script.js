@@ -27,7 +27,7 @@ let getPlayerChoice = () => {
 };
 
 //Compares all the player and computer selections
-let gameAlgo = (playerSelection, computerSelection) => {
+function gameAlgo(playerSelection, computerSelection) {
     let playerValue = 0;
     let computerValue = 0;
 
@@ -73,22 +73,31 @@ let gameAlgo = (playerSelection, computerSelection) => {
 }
 
 //Allows the game to run for one round
-let oneRound = (playerSelection, computerSelection) => {
-    console.log(gameAlgo(playerSelection, computerSelection));
+// let oneRound = (playerSelection, computerSelection) => {
+//     console.log(gameAlgo(playerSelection, computerSelection));
 
-};
+// };
 
-//Compilation of all the functions in a chronological manner
+//Compilation of all the functions in a chronological order
 let completeGame = () => {
   let roundSelection = getRoundChoice();
   let playerSelection = getPlayerChoice();
   let computerSelection = getComputerChoice();
 
+  let playerValue = 0;
+  let computerValue = 0;
+
   if (roundSelection == 1) {
-    oneRound(playerSelection, computerSelection);
+    playerValue += gameAlgo(playerSelection, computerSelection).playerValue;
+    computerValue += gameAlgo(playerSelection, computerSelection).computerValue;
+
+    console.log(computerValue);
+    console.log(playerValue);
+  } else if (roundSelection == 5) {
+    
   } else {
     completeGame();
   }
 };
 
-completeGame();
+// completeGame();
