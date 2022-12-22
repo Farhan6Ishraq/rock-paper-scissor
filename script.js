@@ -1,10 +1,11 @@
+// Initializing DOM components
 const body = document.querySelector("body");
 const btn1 = document.querySelector(".btn1");
 const btn2 = document.querySelector(".btn2");
 const btn3 = document.querySelector(".btn3");
 const buttons = document.querySelectorAll("button");
 
-const winText = document.createElement('p');
+const winText = document.createElement("p");
 
 const para1 = document.createElement("p");
 body.appendChild(para1);
@@ -18,12 +19,14 @@ body.appendChild(scoreDiv);
 let playerScore = 0;
 let computerScore = 0;
 
+// Game starts once button is clicked
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     completeGameUI(button);
   });
 });
 
+// Keeps track of score, Shows the results, reloads the site once completed
 let completeGameUI = (button) => {
   let scoreObj = gameAlgo(getPlayerChoice(button), getComputerChoice());
 
@@ -32,26 +35,26 @@ let completeGameUI = (button) => {
 
   scoreDiv.textContent = `Player score: ${playerScore}, Computer score: ${computerScore}`;
 
-  if(playerScore == 5) {
+  if (playerScore == 5) {
     body.removeChild(btn1);
     body.removeChild(btn2);
     body.removeChild(btn3);
 
-    winText.textContent = 'Player has Won!';
+    winText.textContent = "Player has Won!";
     body.insertBefore(winText, para1);
 
-    const myTimeOut = setTimeout(function() { 
+    const myTimeOut = setTimeout(function () {
       location.reload();
     }, 3000);
-  } else if(computerScore == 5) {
+  } else if (computerScore == 5) {
     body.removeChild(btn1);
     body.removeChild(btn2);
     body.removeChild(btn3);
 
-    winText.textContent = 'Computer has Won!';
+    winText.textContent = "Computer has Won!";
     body.insertBefore(winText, para1);
 
-    const myTimeOut = setTimeout(function() { 
+    const myTimeOut = setTimeout(function () {
       location.reload();
     }, 3000);
   }
